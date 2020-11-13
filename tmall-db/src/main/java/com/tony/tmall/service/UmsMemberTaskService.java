@@ -1,8 +1,8 @@
 package com.tony.tmall.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tony.tmall.common.utils.PageUtils;
 import com.tony.tmall.entity.UmsMemberTaskEntity;
+import com.tony.tmall.util.PageUtils;
 
 import java.util.Map;
 
