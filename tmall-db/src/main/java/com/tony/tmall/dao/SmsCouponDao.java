@@ -2,6 +2,7 @@ package com.tony.tmall.dao;
 
 import com.tony.tmall.entity.SmsCouponEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.tony.tmall.model.dto.SmsCouponParam;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,5 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SmsCouponDao extends BaseMapper<SmsCouponEntity> {
-	
+
+    SmsCouponParam getItem(Long id);
 }

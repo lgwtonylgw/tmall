@@ -34,5 +34,23 @@
         <result property="receiveNote" column="receive_note"/>
     </resultMap>
 
+    <resultMap id="returnApplyDetailResultMap" type="com.tony.tmall.model.vo.OmsOrderReturnApplyResult" extends="omsOrderReturnApplyMap">
+        <association property="companyAddress" resultMap="com.tony.tmall.dao.OmsCompanyAddressDao.omsCompanyAddressMap" columnPrefix="ca_"/>
+    </resultMap>
 
+    <select id="getDetail" resultMap="returnApplyDetailResultMap">
+        SELECT
+            ra.*, ca.id ca_id,
+                  ca.address_name ca_address_name,
+                  ca.`name` ca_name,
+                  ca.phone ca_phone,
+                  ca.province ca_province,
+                  ca.city ca_city,
+                  ca.region ca_region,
+                  ca.detail_address ca_detail_address
+        FROM
+            oms_order_return_apply ra
+            LEFT JOIN oms_company_address ca ON ra.company_address_id = ca.id
+        WHERE ra.id=#{id};
+    </select>
 </mapper>

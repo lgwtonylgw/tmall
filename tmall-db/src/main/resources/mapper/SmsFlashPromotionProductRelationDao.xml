@@ -14,6 +14,31 @@
         <result property="flashPromotionLimit" column="flash_promotion_limit"/>
         <result property="sort" column="sort"/>
     </resultMap>
-
+    <resultMap id="flashProductMap" type="com.tony.tmall.model.vo.SmsFlashPromotionProduct" extends="smsFlashPromotionProductRelationMap">
+        <association property="product" resultMap="com.tony.tmall.dao.PmsProductDao.pmsProductMap" columnPrefix="p_"/>
+    </resultMap>
+    <select id="getList" resultMap="flashProductMap">
+        SELECT
+            r.id,
+            r.flash_promotion_price,
+            r.flash_promotion_count,
+            r.flash_promotion_limit,
+            r.flash_promotion_id,
+            r.flash_promotion_session_id,
+            r.product_id,
+            r.sort,
+            p.id p_id,
+            p.`name` p_name,
+            p.product_sn p_product_sn,
+            p.price p_price,
+            p.stock p_stock
+        FROM
+            sms_flash_promotion_product_relation r
+            LEFT JOIN pms_product p ON r.product_id = p.id
+        WHERE
+            r.flash_promotion_id = #{flashPromotionId}
+            AND r.flash_promotion_session_id = #{flashPromotionSessionId}
+        ORDER BY r.sort DESC
+    </select>
 
 </mapper>

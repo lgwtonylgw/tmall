@@ -2,7 +2,10 @@ package com.tony.tmall.dao;
 
 import com.tony.tmall.entity.PmsProductCategoryEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.tony.tmall.model.vo.PmsProductCategoryWithChildrenItem;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 产品分类
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PmsProductCategoryDao extends BaseMapper<PmsProductCategoryEntity> {
-	
+
+    List<PmsProductCategoryWithChildrenItem> listWithChildren();
 }

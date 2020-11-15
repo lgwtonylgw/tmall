@@ -2,7 +2,10 @@ package com.tony.tmall.dao;
 
 import com.tony.tmall.entity.PmsProductAttributeEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.tony.tmall.model.vo.ProductAttrInfo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 商品属性参数表
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PmsProductAttributeDao extends BaseMapper<PmsProductAttributeEntity> {
-	
+
+    List<ProductAttrInfo> getProductAttrInfo(Long productCategoryId);
 }

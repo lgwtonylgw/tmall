@@ -2,6 +2,7 @@ package com.tony.tmall.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tony.tmall.entity.SmsCouponEntity;
+import com.tony.tmall.model.dto.SmsCouponParam;
 import com.tony.tmall.util.PageUtils;
 
 import java.util.Map;
@@ -16,5 +17,13 @@ import java.util.Map;
 public interface SmsCouponService extends IService<SmsCouponEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    int create(SmsCouponParam couponParam);
+
+    int delete(Long id);
+
+    int updateByid(Long id, SmsCouponParam couponParam);
+
+    SmsCouponParam getItem(Long id);
 }
 

@@ -1,6 +1,6 @@
 package com.tony.tmall.common.exception;
 
-import com.tony.tmall.common.model.domain.CommonResult;
+import com.tony.tmall.common.model.domain.R;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -18,16 +18,16 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(value = ApiException.class)
-    public CommonResult handle(ApiException e) {
+    public R handle(ApiException e) {
         if (e.getErrorCode() != null) {
-            return CommonResult.failed(e.getErrorCode());
+            return R.error(e.getErrorCode());
         }
-        return CommonResult.failed(e.getMessage());
+        return R.error(e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public CommonResult handleValidException(MethodArgumentNotValidException e) {
+    public R handleValidException(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
         String message = null;
         if (bindingResult.hasErrors()) {
@@ -36,12 +36,12 @@ public class GlobalExceptionHandler {
                 message = fieldError.getField()+fieldError.getDefaultMessage();
             }
         }
-        return CommonResult.validateFailed(message);
+        return R.validateFailed(message);
     }
 
     @ResponseBody
     @ExceptionHandler(value = BindException.class)
-    public CommonResult handleValidException(BindException e) {
+    public R handleValidException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         String message = null;
         if (bindingResult.hasErrors()) {
@@ -50,6 +50,6 @@ public class GlobalExceptionHandler {
                 message = fieldError.getField()+fieldError.getDefaultMessage();
             }
         }
-        return CommonResult.validateFailed(message);
+        return R.validateFailed(message);
     }
 }

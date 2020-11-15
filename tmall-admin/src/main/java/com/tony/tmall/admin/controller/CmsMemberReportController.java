@@ -29,7 +29,6 @@ public class CmsMemberReportController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("tmall:cmsmemberreport:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = cmsMemberReportService.queryPage(params);
 
@@ -41,7 +40,6 @@ public class CmsMemberReportController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("tmall:cmsmemberreport:info")
     public R info(@PathVariable("id") Long id){
 		CmsMemberReportEntity cmsMemberReport = cmsMemberReportService.getById(id);
 
@@ -52,7 +50,6 @@ public class CmsMemberReportController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("tmall:cmsmemberreport:save")
     public R save(@RequestBody CmsMemberReportEntity cmsMemberReport){
 		cmsMemberReportService.save(cmsMemberReport);
 
@@ -63,7 +60,6 @@ public class CmsMemberReportController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("tmall:cmsmemberreport:update")
     public R update(@RequestBody CmsMemberReportEntity cmsMemberReport){
 		cmsMemberReportService.updateById(cmsMemberReport);
 
@@ -74,7 +70,6 @@ public class CmsMemberReportController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("tmall:cmsmemberreport:delete")
     public R delete(@RequestBody Long[] ids){
 		cmsMemberReportService.removeByIds(Arrays.asList(ids));
 

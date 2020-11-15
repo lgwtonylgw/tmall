@@ -11,5 +11,21 @@
         <result property="paramCount" column="param_count"/>
     </resultMap>
 
+    <resultMap id="getListWithAttrMap" type="com.tony.tmall.model.vo.PmsProductAttributeCategoryItem" extends="pmsProductAttributeCategoryMap">
+        <collection property="productAttributeList" columnPrefix="attr_" resultMap="com.tony.tmall.dao.PmsProductAttributeDao.pmsProductAttributeMap">
+        </collection>
+    </resultMap>
+
+    <select id="getListWithAttr" resultMap="getListWithAttrMap">
+        SELECT
+            pac.id,
+            pac.name,
+            pa.id attr_id,
+            pa.name attr_name
+        FROM
+            pms_product_attribute_category pac
+            LEFT JOIN pms_product_attribute pa ON pac.id = pa.product_attribute_category_id
+        AND pa.type=1;
+    </select>
 
 </mapper>

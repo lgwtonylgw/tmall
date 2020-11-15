@@ -28,6 +28,10 @@ public class R extends HashMap<String, Object> {
         return error(500, msg);
     }
 
+    public static R error(ResultCode resultCode) {
+        return error(resultCode.getCode(), resultCode.getMessage());
+    }
+
     public static R error(int code, String msg) {
         R r = new R();
         r.put("code", code);
@@ -71,6 +75,10 @@ public class R extends HashMap<String, Object> {
 
     public static R ok() {
         return new R();
+    }
+
+    public static R validateFailed(String message) {
+        return R.error(ResultCode.VALIDATE_FAILED.getCode(), message);
     }
 
     public R put(String key, Object value) {

@@ -16,5 +16,7 @@ import java.util.Map;
 public interface CmsSubjectService extends IService<CmsSubjectEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    PageUtils listByName(String keyword, Integer pageNum, Integer pageSize);
 }
 

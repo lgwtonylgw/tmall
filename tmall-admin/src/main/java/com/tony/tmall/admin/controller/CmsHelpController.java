@@ -29,7 +29,6 @@ public class CmsHelpController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("tmall:cmshelp:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = cmsHelpService.queryPage(params);
 
@@ -41,7 +40,6 @@ public class CmsHelpController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("tmall:cmshelp:info")
     public R info(@PathVariable("id") Long id){
 		CmsHelpEntity cmsHelp = cmsHelpService.getById(id);
 
@@ -52,7 +50,6 @@ public class CmsHelpController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("tmall:cmshelp:save")
     public R save(@RequestBody CmsHelpEntity cmsHelp){
 		cmsHelpService.save(cmsHelp);
 
@@ -63,7 +60,6 @@ public class CmsHelpController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("tmall:cmshelp:update")
     public R update(@RequestBody CmsHelpEntity cmsHelp){
 		cmsHelpService.updateById(cmsHelp);
 
@@ -74,7 +70,6 @@ public class CmsHelpController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("tmall:cmshelp:delete")
     public R delete(@RequestBody Long[] ids){
 		cmsHelpService.removeByIds(Arrays.asList(ids));
 

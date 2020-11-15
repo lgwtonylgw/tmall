@@ -16,5 +16,7 @@ import java.util.Map;
 public interface OmsOrderSettingService extends IService<OmsOrderSettingEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    OmsOrderSettingEntity getItem(Long id);
 }
 

@@ -1,5 +1,6 @@
 package com.tony.tmall.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tony.tmall.entity.SmsHomeAdvertiseEntity;
 import com.tony.tmall.util.PageUtils;
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface SmsHomeAdvertiseService extends IService<SmsHomeAdvertiseEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    Page<SmsHomeAdvertiseEntity> listByPage(String name, Integer type, String endTime, Integer pageSize, Integer pageNum);
 }
 

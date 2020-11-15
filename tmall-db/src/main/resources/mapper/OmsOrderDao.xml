@@ -3,6 +3,10 @@
 
 <mapper namespace="com.tony.tmall.dao.OmsOrderDao">
 
+    <resultMap id="orderDetailResultMap" type="com.tony.tmall.model.vo.OmsOrderDetail" extends="omsOrderMap">
+        <collection property="orderItemList" resultMap="com.tony.tmall.dao.OmsOrderItemDao.omsOrderItemMap" columnPrefix="item_"/>
+        <collection property="historyList" resultMap="com.tony.tmall.dao.OmsOrderOperateHistoryDao.omsOrderOperateHistoryMap" columnPrefix="history_"/>
+    </resultMap>
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.tony.tmall.entity.OmsOrderEntity" id="omsOrderMap">
         <result property="id" column="id"/>
@@ -50,6 +54,64 @@
         <result property="commentTime" column="comment_time"/>
         <result property="modifyTime" column="modify_time"/>
     </resultMap>
+
+
+    <update id="delivery">
+        UPDATE oms_order
+        SET
+        delivery_sn = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN #{item.deliverySn}
+        </foreach>
+        END,
+        delivery_company = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN #{item.deliveryCompany}
+        </foreach>
+        END,
+        delivery_time = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN now()
+        </foreach>
+        END,
+        `status` = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN 2
+        </foreach>
+        END
+        WHERE
+        id IN
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item.orderId}
+        </foreach>
+        AND `status` = 1
+    </update>
+
+
+    <select id="getDetail" resultMap="orderDetailResultMap">
+        SELECT o.*,
+            oi.id item_id,
+            oi.product_id item_product_id,
+            oi.product_sn item_product_sn,
+            oi.product_pic item_product_pic,
+            oi.product_name item_product_name,
+            oi.product_brand item_product_brand,
+            oi.product_price item_product_price,
+            oi.product_quantity item_product_quantity,
+            oi.product_attr item_product_attr,
+            oh.id history_id,
+            oh.operate_man history_operate_man,
+            oh.create_time history_create_time,
+            oh.order_status history_order_status,
+            oh.note history_note
+        FROM
+            oms_order o
+            LEFT JOIN oms_order_item oi ON o.id = oi.order_id
+            LEFT JOIN oms_order_operate_history oh ON o.id = oh.order_id
+        WHERE
+            o.id = #{id}
+        ORDER BY oi.id ASC,oh.create_time DESC
+    </select>
 
 
 </mapper>

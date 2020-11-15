@@ -23,7 +23,7 @@ import java.util.Map;
  * @date 2020-11-12 09:18:07
  */
 @RestController
-@RequestMapping("tmall/cmsprefrencearea")
+@RequestMapping("/prefrenceAre")
 @Api(tags = "CmsPrefrenceAreaController", description = "商品优选管理")
 public class CmsPrefrenceAreaController {
     @Autowired
@@ -34,13 +34,13 @@ public class CmsPrefrenceAreaController {
     @ResponseBody
     public R listAll() {
         List<CmsPrefrenceAreaEntity> prefrenceAreaList = cmsPrefrenceAreaService.list();
-        return R.ok().put("data", prefrenceAreaList);
+        return R.ok(prefrenceAreaList);
     }
     /**
      * 列表
      */
     @RequestMapping("/list")
-    @ApiOperation("获取所有商品优选")
+    @ApiOperation("分页获取商品优选")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = cmsPrefrenceAreaService.queryPage(params);
 
@@ -52,7 +52,6 @@ public class CmsPrefrenceAreaController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("tmall:cmsprefrencearea:info")
     public R info(@PathVariable("id") Long id){
 		CmsPrefrenceAreaEntity cmsPrefrenceArea = cmsPrefrenceAreaService.getById(id);
 
@@ -63,7 +62,6 @@ public class CmsPrefrenceAreaController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("tmall:cmsprefrencearea:save")
     public R save(@RequestBody CmsPrefrenceAreaEntity cmsPrefrenceArea){
 		cmsPrefrenceAreaService.save(cmsPrefrenceArea);
 
@@ -74,7 +72,6 @@ public class CmsPrefrenceAreaController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("tmall:cmsprefrencearea:update")
     public R update(@RequestBody CmsPrefrenceAreaEntity cmsPrefrenceArea){
 		cmsPrefrenceAreaService.updateById(cmsPrefrenceArea);
 
@@ -85,7 +82,6 @@ public class CmsPrefrenceAreaController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("tmall:cmsprefrencearea:delete")
     public R delete(@RequestBody Long[] ids){
 		cmsPrefrenceAreaService.removeByIds(Arrays.asList(ids));
 

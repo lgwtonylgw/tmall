@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tony.tmall.entity.SmsHomeNewProductEntity;
 import com.tony.tmall.util.PageUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface SmsHomeNewProductService extends IService<SmsHomeNewProductEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    int create(List<SmsHomeNewProductEntity> homeBrandList);
 }
 

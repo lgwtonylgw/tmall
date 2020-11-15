@@ -2,8 +2,10 @@ package com.tony.tmall.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tony.tmall.entity.PmsProductAttributeCategoryEntity;
+import com.tony.tmall.model.vo.PmsProductAttributeCategoryItem;
 import com.tony.tmall.util.PageUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface PmsProductAttributeCategoryService extends IService<PmsProductAttributeCategoryEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<PmsProductAttributeCategoryItem> getListWithAttr();
 }
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tony.tmall.entity.PmsSkuStockEntity;
 import com.tony.tmall.util.PageUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface PmsSkuStockService extends IService<PmsSkuStockEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    int updateByPid(Long pid, List<PmsSkuStockEntity> skuStockList);
 }
 

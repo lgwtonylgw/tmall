@@ -29,7 +29,6 @@ public class CmsSubjectCategoryController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("tmall:cmssubjectcategory:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = cmsSubjectCategoryService.queryPage(params);
 
@@ -41,7 +40,6 @@ public class CmsSubjectCategoryController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("tmall:cmssubjectcategory:info")
     public R info(@PathVariable("id") Long id){
 		CmsSubjectCategoryEntity cmsSubjectCategory = cmsSubjectCategoryService.getById(id);
 
@@ -52,7 +50,6 @@ public class CmsSubjectCategoryController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("tmall:cmssubjectcategory:save")
     public R save(@RequestBody CmsSubjectCategoryEntity cmsSubjectCategory){
 		cmsSubjectCategoryService.save(cmsSubjectCategory);
 
@@ -63,7 +60,6 @@ public class CmsSubjectCategoryController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("tmall:cmssubjectcategory:update")
     public R update(@RequestBody CmsSubjectCategoryEntity cmsSubjectCategory){
 		cmsSubjectCategoryService.updateById(cmsSubjectCategory);
 
@@ -74,7 +70,6 @@ public class CmsSubjectCategoryController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("tmall:cmssubjectcategory:delete")
     public R delete(@RequestBody Long[] ids){
 		cmsSubjectCategoryService.removeByIds(Arrays.asList(ids));
 
